@@ -2,10 +2,17 @@ package com.example.xmlparsertest;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.net.ssl.HttpsURLConnection;
+
+import org.apache.http.HttpConnection;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -18,6 +25,9 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 	private final String TAG = "Main";
+	private String isbnUrl = "http://book.interpark.com/api/search.api";
+	private Map<String, String> params = new HashMap<String, String>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +35,13 @@ public class MainActivity extends Activity {
 		
 		ArrayList<BookItem> items = new ArrayList<BookItem>();
 		try {
-			new PullParserTask("http://book.interpark.com/api/search.api?key=672DC494E29F75F40A38931508CD19AF96653A82A502146C58A62766FFA2AC61&query=9788996603139&queryType=isbn", items).execute();
+			params.put("key", "672DC494E29F75F40A38931508CD19AF96653A82A502146C58A62766FFA2AC61");
+			params.put("query", "9788996603139");
+			params.put("queryType", "isbn");
+			
+//			new PullParserTask("http://book.interpark.com/api/search.api?key=672DC494E29F75F40A38931508CD19AF96653A82A502146C58A62766FFA2AC61&query=9788996603139&queryType=isbn", items).execute();
+			new PullParserTask(isbnUrl, params, items).execute();
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,13 +60,33 @@ public class MainActivity extends Activity {
 
 		private ArrayList<BookItem> mBookItems = null;
 		private URL mURL = null;
+		private Map<String,String> mParams = null;
 		
-		
-		public PullParserTask(String url, ArrayList<BookItem> mBookItems) throws MalformedURLException {
-			this.mURL = new URL(url);
-			this.mBookItems = mBookItems;
+		public PullParserTask(String url, Map<String,String> params, ArrayList<BookItem> bookItems) throws MalformedURLException {
+			this.mURL = new URL(getGetURLString(url, params));
+			this.mBookItems = bookItems;
 		}
+		
+		private String getGetURLString(String url, Map<String,String> params){
+			StringBuilder sb = new StringBuilder(url);
+			
+			if(params != null && !params.isEmpty()){
+				sb.append("?");
+				
+				for(String key : params.keySet()){
+					sb.append(key);
+					sb.append("=");
+					sb.append(params.get(key));
+					sb.append("&");
+				}
+			
+				sb.deleteCharAt(sb.length() - 1);
+			}
+			Log.i(TAG,"[getGetURLString]url : " + sb.toString());
 
+			return sb.toString();
+		}
+		
 		@Override
 		protected void onPostExecute(Void result) {
 			for(BookItem item : mBookItems){
@@ -69,9 +105,12 @@ public class MainActivity extends Activity {
 		protected Void doInBackground(Void... params) {
 			
 			try {
-				InputStream in = mURL.openStream();
 				XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 				XmlPullParser parser = factory.newPullParser();
+				
+				HttpURLConnection urlConnection = (HttpURLConnection) mURL.openConnection();
+				
+				InputStream in = urlConnection.getInputStream();
 				parser.setInput(in, "utf-8");
 				
 				String tagName = "";
@@ -99,8 +138,10 @@ public class MainActivity extends Activity {
 							isItemTag = false;
 						}
 						
-						eventType = parser.nextTag();
-						continue;
+						if(isItemTag){
+							eventType = parser.nextTag();
+							continue;
+						}
 						
 					}else if(eventType == XmlPullParser.TEXT && isItemTag){
 						Log.i(TAG,"XmlPullParser.TEXT : " + tagName);
