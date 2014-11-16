@@ -27,7 +27,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		/*
+		 * https://www.googleapis.com/books/v1/volumes?q=isbn:9788976820532
+		 */
 		ArrayList<BookItem> items = new ArrayList<BookItem>();
 		try {
 //			String isbnCode = "9788996603139";
