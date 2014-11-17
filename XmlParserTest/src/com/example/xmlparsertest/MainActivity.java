@@ -185,6 +185,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public class BookItem{
+		public String id;
 		public String title;
 		public String description;
 		public String pubDate;
@@ -193,6 +194,31 @@ public class MainActivity extends Activity {
 		public String publisher;
 		public String author;
 		public String isbn;
+		public String created;
+		public String modified;
 	}
 
+	public class UserItem{
+		public String id;
+		public String employeeId;
+		public String name;
+		public String phoneNum;
+		public String created;
+		public String modified;
+	}
+	
+	public class LendingBookItem{
+		public String id;
+		public String bookId;
+		public String userId;
+		public String state;
+		public String modified;
+		public String created;
+	}
+	
+	public class LendingBookHistoryItem{
+		public String id;
+		public String lendingBookId;
+		public String state;
+	}
 }
