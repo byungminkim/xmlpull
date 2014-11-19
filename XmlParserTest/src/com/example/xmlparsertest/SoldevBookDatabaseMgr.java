@@ -2,7 +2,6 @@ package com.example.xmlparsertest;
 
 import java.util.ArrayList;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -76,6 +75,9 @@ public class SoldevBookDatabaseMgr implements ISoldevBookDataProvider{
 	
 	private ArrayList<BookItem> getLendingBooks(){
 		
+		
+		// 우선 DB 파일을 복사하는 로직 필요함. (로그인 안내 메시지로 하자)
+		// 누르면 특정 경로로 파일 복사하는 거. (마이샵에서 찾아서)
 		// 내 서재
 		/* 1. 현재 시점에 내가 대출한 목록
 		select BookItem from book b inner join lending l  on (b.bookid = l.bookid) where l.userid = USERID and l.state = 대출
@@ -135,9 +137,6 @@ public class SoldevBookDatabaseMgr implements ISoldevBookDataProvider{
 	 신청
 	 */
 	private void addLendingBooks(){
-		
-		//
-		
 	}
 	
 	@Override
