@@ -24,10 +24,28 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080000;
+        public static final int action_settings=0x7f08000b;
+        public static final int btn_all=0x7f080007;
+        public static final int btn_lending=0x7f080008;
+        public static final int btn_login=0x7f080005;
+        public static final int btn_mine=0x7f080006;
+        public static final int btn_request=0x7f08000a;
+        public static final int btn_return=0x7f080009;
+        public static final int et_id=0x7f080002;
+        public static final int et_pw=0x7f080004;
+        public static final int tv_id=0x7f080001;
+        public static final int tv_pw=0x7f080003;
+        public static final int tv_welcome=0x7f080000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int lending_books=0x7f030001;
+        public static final int login=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int my_library=0x7f030004;
+        public static final int request_books=0x7f030005;
+        public static final int return_books=0x7f030006;
+        public static final int show_all_books=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f070000;

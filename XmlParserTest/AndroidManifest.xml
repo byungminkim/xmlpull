@@ -13,16 +13,41 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" 
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="landscape">
         <activity
-            android:name="com.example.xmlparsertest.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.example.xmlparsertest.LoginPage"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.xmlparsertest.MainPage"
+            android:label="@string/app_name">
+        </activity>
+                <activity
+            android:name="com.example.xmlparsertest.MyLibraryPage"
+            android:label="@string/app_name">
+        </activity>
+                <activity
+            android:name="com.example.xmlparsertest.ShowAllBookPage"
+            android:label="@string/app_name">
+        </activity>
+                <activity
+            android:name="com.example.xmlparsertest.LendingPage"
+            android:label="@string/app_name">
+        </activity>
+               <activity
+            android:name="com.example.xmlparsertest.ReturnPage"
+            android:label="@string/app_name">
+        </activity>
+               <activity
+            android:name="com.example.xmlparsertest.RequestPage"
+            android:label="@string/app_name">
+        </activity>        
     </application>
 
 </manifest>
