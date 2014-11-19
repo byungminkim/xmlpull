@@ -7,7 +7,7 @@
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true" >
-
+		<!-- 
         <TextView
             android:id="@+id/tv_welcome"
             android:layout_width="match_parent"
@@ -15,13 +15,15 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="상품개발팀 만화방!" />
-
+            
+                        android:layout_below="@id/tv_welcome"
+            
+ -->
         <Button
             android:id="@+id/btn_mine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/tv_welcome"
             android:text="내 도서관" />
          <Button
             android:id="@+id/btn_all"
@@ -51,6 +53,13 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/btn_return"
             android:text="희망도서" />
+          <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/btn_request"
+            android:text="도서등록" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -52,7 +52,11 @@ public class MainPage extends Activity implements OnClickListener{
 			
 		case R.id.btn_request:
 			moveToPage(RequestPage.class);
-			break;		
+			break;	
+			
+		case R.id.btn_register:
+			moveToPage(RegisterPage.class);
+			break;	
 		}
 	}
 	
