@@ -1,16 +1,305 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Title -->
+    <LinearLayout
+        android:id="@+id/title_region"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="lending books" />
+        android:layout_alignParentTop="true"
+        android:background="#ff0011f0"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bottom books" />
+    </LinearLayout>
+
+    <!-- Bottom -->
+    <LinearLayout
+        android:id="@+id/bottom_region"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ff00ff00"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bottom books" />
+    </LinearLayout>
+
+    <!-- Content -->
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="1000dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_region"
+        android:layout_below="@id/title_region"
+        android:layout_marginLeft="50dp"
+        android:background="#ffffffff" >
+
+        <ImageView
+            android:id="@+id/thumbNail"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:src="@drawable/large02" 
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/thumbNail"
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:text="삐뽀삐뽀 119 우리 아가 모유 먹이기"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/title"
+            android:layout_below="@id/title"
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:text="정유미,하정훈"
+            android:textSize="25dp" 
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/publish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/title"
+            android:layout_below="@id/author"
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:text="2009.05.25"
+            android:textSize="25dp" 
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/title"
+            android:layout_below="@id/publish"
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:text="그린비라이프"
+            android:textSize="25dp" 
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/isbn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/title"
+            android:layout_below="@id/date"
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:text="ISBN 9788976820853"
+            android:textSize="25dp" 
+            android:layout_marginTop="10dp"/>
+         
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/thumbNail"
+            android:layout_below="@id/thumbNail"
+            android:layout_marginTop="30dp"
+            android:text="사람에 따라 식성이 다르듯이, 아이에 따라 모유에 적응하는 속도와 먹여야 하는 시기, 방법도 다양하다. 바람직한 모유 수유를 위해서는 이러한 점을 잘 알고, 아이에 맞게 수유 방법을 조절해야 한다. 이 책은 [삐뽀삐뽀 119 소아과]의 하정훈씨가 알려주는 올바른 모유 수유법, 모유 수유 중 일어날 수 있는 문제에 대처하는 법을 상황별로 상세히 다룬 책이다. 한국의 엄마들이 잘못 알고 있는 모유에 대한 일반상식, 모유 수유에 성공하기 위한 전략, 엄마가 약을 복용할 때의 모유 수유법 등, 모유 수유에 관심있는 모든 엄마들이 한 번쯤 궁금해하는 내용을 담았다. 올바른 모유 수유법, 모유 수유 중 일어날 수 있는 문제에 대처하는 법을 상황별로 상세히 다룬 책. 한국의 엄마들이 잘못 알고 있는 모유에 대한 일반상식..."
+            android:textSize="20dp" />
+    </RelativeLayout>
+<!--
+    <LinearLayout
+        android:id="@+id/side"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_region"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title_region"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/content"
+        android:background="#fff0ffff"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff0011f0"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/sm" 
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:text="21세기 자본"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff0011f0"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/sm" 
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:text="21세기 자본" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff0011f0"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/sm"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:text="21세기 자본" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff0011f0"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/sm" 
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:text="21세기 자본" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff0011f0"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/sm" 
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:text="21세기 자본" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff0011f0"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/sm" 
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:text="21세기 자본" />
+        </LinearLayout>
+    </LinearLayout>
+     -->
 
 </RelativeLayout>

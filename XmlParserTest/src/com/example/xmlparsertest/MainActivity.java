@@ -13,6 +13,14 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,28 +35,29 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		loadItem();
 		/*
 		 * https://www.googleapis.com/books/v1/volumes?q=isbn:9788976820532
 		 */
-		ArrayList<BookItem> items = new ArrayList<BookItem>();
-		try {
-//			String isbnCode = "9788996603139";
-			String isbnCode = "9788932916200";
-
-			String userKey = "672DC494E29F75F40A38931508CD19AF96653A82A502146C58A62766FFA2AC61";
-			
-			Map<String, String> params = new HashMap<String, String>();
-			
-			params.put("key", userKey);
-			params.put("query", isbnCode);
-			params.put("queryType", "isbn");
-			
-			new PullParserTask(mIsbnUrl, params, items).execute();
-
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ArrayList<BookItem> items = new ArrayList<BookItem>();
+//		try {
+////			String isbnCode = "9788996603139";
+//			String isbnCode = "9788932916200";
+//
+//			String userKey = "672DC494E29F75F40A38931508CD19AF96653A82A502146C58A62766FFA2AC61";
+//			
+//			Map<String, String> params = new HashMap<String, String>();
+//			
+//			params.put("key", userKey);
+//			params.put("query", isbnCode);
+//			params.put("queryType", "isbn");
+//			
+//			new PullParserTask(mIsbnUrl, params, items).execute();
+//
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
@@ -56,6 +65,56 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	
+	public void loadItem(){
+		
+		RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+		Map<String, String> params = new HashMap<String, String>();
+		
+		String isbnCode = "9788932916200";
+		String userKey = "672DC494E29F75F40A38931508CD19AF96653A82A502146C58A62766FFA2AC61";
+
+		params.put("key", userKey);
+		params.put("query", isbnCode);
+		params.put("queryType", "isbn");
+		
+		StringRequest stringRequest = new StringRequest(Request.Method.GET,
+				getGetURLString(mIsbnUrl, params),
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						Log.i(TAG,"[onResponse]returns : " + response);
+					}
+					
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError err) {
+						Log.i(TAG,"[onErrorResponse]returns : " + err);
+					}
+				});
+		
+		requestQueue.start();
+		requestQueue.add(stringRequest);
+	}
+	
+	private String getGetURLString(String url, Map<String,String> params){
+		StringBuilder sb = new StringBuilder(url);
+		
+		if(params != null && !params.isEmpty()){
+			sb.append("?");
+			
+			for(String key : params.keySet()){
+				sb.append(key);
+				sb.append("=");
+				sb.append(params.get(key));
+				sb.append("&");
+			}
+		}
+		
+		Log.i(TAG,"[getGetURLString]url : " + sb.toString());
+		return sb.toString();
 	}
 	
 	public class PullParserTask extends AsyncTask<Void, Void, Void>{

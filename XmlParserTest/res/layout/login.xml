@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="400dp"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
         android:layout_centerInParent="true" >
 
         <TextView
@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="상품개발팀 만화방인가?" />
+            android:textSize="30dp"
+            android:text="상품개발팀 도서관" />
 
         <TextView
             android:id="@+id/tv_id"
@@ -23,15 +24,17 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/tv_welcome"
             android:layout_marginTop="50dp"
+            android:textSize="25dp"
             android:text="ID" />
 
         <EditText
             android:id="@+id/et_id"
-            android:layout_width="100dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/tv_id"
             android:layout_below="@id/tv_welcome"
             android:layout_toRightOf="@id/tv_id"
+            android:layout_marginLeft="30dp"
             android:inputType="number" />
 
         <TextView
@@ -42,13 +45,16 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/tv_id"
             android:layout_marginTop="50dp"
+                        android:textSize="25dp"
+            
             android:text="PW" />
 
         <EditText
             android:id="@+id/et_pw"
-            android:layout_width="100dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/tv_pw"
+            android:layout_alignLeft="@id/et_id"
             android:layout_toRightOf="@id/tv_pw"
             android:inputType="numberPassword" />
 
